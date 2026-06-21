@@ -1,0 +1,16 @@
+[gd_scene format=3 load_steps=3]
+
+[ext_resource type="Script" path="res://scripts/entities/survivor.gd" id="survivor"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_survivor"]
+size = Vector2(24, 24)
+
+[node name="Survivor" type="CharacterBody2D"]
+script = ExtResource("survivor")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+color = Color(0.8, 0.2, 0.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_survivor")

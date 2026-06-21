@@ -1,0 +1,17 @@
+[gd_scene format=3 load_steps=2]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_campfire"]
+size = Vector2(36, 36)
+
+[node name="Campfire" type="StaticBody2D"]
+
+[node name="Ground" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-22, -4, 22, -4, 28, 4, 20, 10, -20, 10, -28, 4)
+color = Color(0.25, 0.2, 0.15, 1)
+
+[node name="Flame" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-8, 0, 8, 0, 10, -16, 0, -28, -10, -16)
+color = Color(0.95, 0.45, 0.15, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_campfire")

@@ -1,0 +1,25 @@
+# Godot 4 specific ignores
+.godot/
+*.tmp
+*.import
+*.translation
+
+# Imported assets (can be regenerated)
+.import/
+
+# Mono/C# specific
+.mono/
+data_*/
+
+# System/tool specific
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Build outputs
+export_presets.cfg
+android/
+ios/
