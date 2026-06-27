@@ -1,11 +1,13 @@
-[gd_scene format=3 load_steps=6]
+[gd_scene format=3 load_steps=7]
+
+[ext_resource type="Script" path="res://scripts/buildings/house_3d.gd" id="house_3d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wall"]
-albedo_color = Color(0.6, 0.55, 0.45, 1)
+albedo_color = Color(0.75, 0.7, 0.55, 1)
 roughness = 0.9
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_roof"]
-albedo_color = Color(0.6, 0.2, 0.15, 1)
+albedo_color = Color(0.75, 0.3, 0.25, 1)
 roughness = 0.8
 
 [sub_resource type="BoxMesh" id="BoxMesh_wall"]
@@ -20,6 +22,7 @@ material = SubResource("StandardMaterial3D_roof")
 size = Vector3(2.0, 2.5, 2.0)
 
 [node name="House3D" type="StaticBody3D"]
+script = ExtResource("house_3d")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)

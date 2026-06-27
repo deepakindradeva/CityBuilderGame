@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://playersuperhero001"]
+
+[ext_resource type="PackedScene" uid="uid://c1cf0j4pbhngm" path="res://assets/models/animations/UAL2_Standard.glb" id="anim_mannequin"]
+[ext_resource type="PackedScene" path="res://assets/models/characters/Superhero_Male_FullBody.gltf" id="superhero"]
+[ext_resource type="PackedScene" path="res://scenes/entities3d/hair_long_3d.tscn" id="hair_long"]
+[ext_resource type="Script" path="res://scripts/entities/player_3d.gd" id="player_3d"]
+[ext_resource type="Script" path="res://scripts/entities/skeleton_mapper.gd" id="skeleton_mapper"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+radius = 0.3
+height = 1.0
+
+[node name="PlayerSuperhero3D" type="CharacterBody3D"]
+script = ExtResource("player_3d")
+
+[node name="UAL2_Standard" parent="." instance=ExtResource("anim_mannequin")]
+visible = false
+
+[node name="Superhero_Male_FullBody" parent="." instance=ExtResource("superhero")]
+
+[node name="HairLong3D" parent="." instance=ExtResource("hair_long")]
+
+[node name="BodySkeletonMapper" type="Node3D" parent="."]
+script = ExtResource("skeleton_mapper")
+source_skeleton_path = NodePath("../UAL2_Standard/Skeleton3D")
+target_skeleton_path = NodePath("../Superhero_Male_FullBody/Skeleton3D")
+
+[node name="HairSkeletonMapper" type="Node3D" parent="."]
+script = ExtResource("skeleton_mapper")
+source_skeleton_path = NodePath("../Superhero_Male_FullBody/Skeleton3D")
+target_skeleton_path = NodePath("../HairLong3D/Hair_Long/Skeleton3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_player")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]

@@ -1,27 +1,19 @@
-[gd_scene format=3 load_steps=4]
+[gd_scene format=3 uid="uid://dgfcqtikw5ufx"]
 
-[ext_resource type="Script" path="res://scripts/entities/survivor_3d.gd" id="survivor_3d"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_body"]
-albedo_color = Color(0.8, 0.2, 0.2, 1)
-roughness = 0.7
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_survivor"]
-radius = 0.3
-height = 1.0
-material = SubResource("StandardMaterial3D_body")
+[ext_resource type="PackedScene" uid="uid://c1cf0j4pbhngm" path="res://assets/models/animations/UAL2_Standard.glb" id="anim_mannequin"]
+[ext_resource type="Script" uid="uid://gnhdrj6bylxq" path="res://scripts/entities/survivor_3d.gd" id="survivor_3d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_survivor"]
 radius = 0.3
 height = 1.0
 
-[node name="Survivor3D" type="CharacterBody3D"]
+[node name="Survivor3D" type="CharacterBody3D" unique_id=1931087270]
 script = ExtResource("survivor_3d")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("CapsuleMesh_survivor")
+[node name="UAL2_Standard" parent="." unique_id=679736189 instance=ExtResource("anim_mannequin")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1538755605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_survivor")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=905662491]

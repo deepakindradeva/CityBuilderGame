@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dk7tf2q03nmkg"]
+
+[ext_resource type="Script" path="res://scripts/temp_inspect.gd" id="1_4dcic"]
+[ext_resource type="PackedScene" uid="uid://cgnighoq8knpr" path="res://assets/models/characters/Superhero_Male_FullBody.gltf" id="2_f16o5"]
+[ext_resource type="PackedScene" uid="uid://c1cf0j4pbhngm" path="res://assets/models/animations/UAL2_Standard.glb" id="3_5rhuw"]
+
+[node name="Test" type="Node3D" unique_id=502690216]
+script = ExtResource("1_4dcic")
+
+[node name="Superhero_Male_FullBody" parent="." unique_id=838938059 instance=ExtResource("2_f16o5")]
+
+[node name="UAL2_Standard" parent="." unique_id=1107442430 instance=ExtResource("3_5rhuw")]

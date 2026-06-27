@@ -8,6 +8,9 @@ class_name UIManager
 ## Building placer used by the bottom toolbar. Can be BuildingPlacer (2D) or BuildingPlacer3D.
 @export var building_placer: Node
 
+## CameraManager node to toggle between top-down and perspective views.
+@export var camera_manager: Node
+
 var _wood_label: Label
 var _food_label: Label
 var _day_label: Label
@@ -22,6 +25,8 @@ func _ready():
 
 	if building_placer == null:
 		building_placer = get_node_or_null("../BuildingPlacer")
+	if camera_manager == null:
+		camera_manager = get_node_or_null("../CameraManager")
 
 	game_manager.wood_changed.connect(_on_wood_changed)
 	game_manager.food_changed.connect(_on_food_changed)
@@ -66,6 +71,11 @@ func _build_ui() -> void:
 	_food_label = _create_value_label("0")
 	resource_box.add_child(_food_label)
 
+	var camera_btn := _create_tool_button("3D View")
+	camera_btn.custom_minimum_size = Vector2(90, 40)
+	camera_btn.pressed.connect(_on_camera_button_pressed)
+	top_bar.add_child(camera_btn)
+
 	# Center day badge.
 	var center_spacer := Control.new()
 	center_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -87,34 +97,6 @@ func _build_ui() -> void:
 	var right_spacer := Control.new()
 	right_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top_bar.add_child(right_spacer)
-
-	# Bottom toolbar.
-	var bottom_bar := HBoxContainer.new()
-	bottom_bar.anchors_preset = Control.PRESET_BOTTOM_WIDE
-	bottom_bar.offset_left = 16
-	bottom_bar.offset_top = -72
-	bottom_bar.offset_right = -16
-	bottom_bar.offset_bottom = -16
-	bottom_bar.alignment = BoxContainer.ALIGNMENT_CENTER
-	add_child(bottom_bar)
-
-	var toolbar := _create_panel()
-	bottom_bar.add_child(toolbar)
-
-	var toolbar_margin := _create_margin(12, 8, 12, 8)
-	toolbar.add_child(toolbar_margin)
-
-	var toolbar_box := HBoxContainer.new()
-	toolbar_box.add_theme_constant_override("separation", 10)
-	toolbar_margin.add_child(toolbar_box)
-
-	var house_btn := _create_tool_button("House")
-	house_btn.pressed.connect(_on_build_button_pressed.bind(0))
-	toolbar_box.add_child(house_btn)
-
-	var cancel_btn := _create_tool_button("Cancel")
-	cancel_btn.pressed.connect(_on_build_button_pressed.bind(-1))
-	toolbar_box.add_child(cancel_btn)
 
 	# Bottom-left event log.
 	var log_panel := _create_panel()
@@ -243,6 +225,22 @@ func _on_build_button_pressed(index: int) -> void:
 			_log("Building selected.")
 		else:
 			_log("Build mode cancelled.")
+
+
+func _on_camera_button_pressed() -> void:
+	print("Camera button pressed")
+	if camera_manager == null:
+		camera_manager = get_node_or_null("../CameraManager")
+	if camera_manager == null:
+		push_error("UIManager: CameraManager not found.")
+		_log("CameraManager not found.")
+		return
+
+	if camera_manager.has_method("toggle"):
+		camera_manager.toggle()
+		_log("Camera switched.")
+	else:
+		push_error("UIManager: CameraManager has no toggle method.")
 
 
 func _log(message: String) -> void:

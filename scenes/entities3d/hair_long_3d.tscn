@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://hairlong001"]
+
+[ext_resource type="PackedScene" path="res://assets/models/characters/hair/Hair_Long.gltf" id="hair_long"]
+
+[node name="HairLong3D" type="Node3D"]
+
+[node name="Hair_Long" parent="." instance=ExtResource("hair_long")]

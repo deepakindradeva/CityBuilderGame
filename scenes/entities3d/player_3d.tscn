@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://player3d001"]
+
+[ext_resource type="PackedScene" uid="uid://c1cf0j4pbhngm" path="res://assets/models/animations/UAL2_Standard.glb" id="anim_mannequin"]
+[ext_resource type="Script" path="res://scripts/entities/player_3d.gd" id="player_3d"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+radius = 0.3
+height = 1.0
+
+[node name="Player3D" type="CharacterBody3D"]
+script = ExtResource("player_3d")
+
+[node name="UAL2_Standard" parent="." instance=ExtResource("anim_mannequin")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_player")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]

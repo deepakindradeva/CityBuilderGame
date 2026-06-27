@@ -1,37 +1,101 @@
-[gd_scene format=3 uid="uid://c7aytqwn8b7o" load_steps=11]
+[gd_scene format=3 uid="uid://c7aytqwn8b7o"]
 
-[ext_resource type="Script" uid="uid://do3j3getic1x3" path="res://scripts/buildings/building_placer_3d.gd" id="building_placer_3d"]
-[ext_resource type="Script" uid="uid://sm3yeei1a34x" path="res://scripts/managers/ui_manager.gd" id="ui_manager"]
-[ext_resource type="PackedScene" path="res://scenes/buildings3d/house_3d.tscn" id="house_3d"]
-[ext_resource type="PackedScene" path="res://scenes/entities3d/tree_3d.tscn" id="tree_3d"]
-[ext_resource type="PackedScene" path="res://scenes/entities3d/rock_3d.tscn" id="rock_3d"]
-[ext_resource type="PackedScene" path="res://scenes/entities3d/campfire_3d.tscn" id="campfire_3d"]
-[ext_resource type="PackedScene" path="res://scenes/entities3d/survivor_3d.tscn" id="survivor_3d"]
+[ext_resource type="PackedScene" path="res://scenes/entities3d/player_superhero_3d.tscn" id="player_3d"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/CommonTree_1.gltf" id="tree_1"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/CommonTree_2.gltf" id="tree_2"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/CommonTree_3.gltf" id="tree_3"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/CommonTree_4.gltf" id="tree_4"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/CommonTree_5.gltf" id="tree_5"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/DeadTree_1.gltf" id="dead_tree_1"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/DeadTree_2.gltf" id="dead_tree_2"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/DeadTree_3.gltf" id="dead_tree_3"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/DeadTree_4.gltf" id="dead_tree_4"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/DeadTree_5.gltf" id="dead_tree_5"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Pine_1.gltf" id="pine_1"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Pine_2.gltf" id="pine_2"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Pine_3.gltf" id="pine_3"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Pine_4.gltf" id="pine_4"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Pine_5.gltf" id="pine_5"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Bush_Common.gltf" id="bush"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Bush_Common_Flowers.gltf" id="bush_flowers"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Fern_1.gltf" id="fern"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Grass_Common_Tall.gltf" id="grass_tall"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Grass_Wispy_Tall.gltf" id="grass_wispy"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Pebble_Round_1.gltf" id="pebble_1"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Pebble_Round_2.gltf" id="pebble_2"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Pebble_Round_3.gltf" id="pebble_3"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Pebble_Round_4.gltf" id="pebble_4"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Pebble_Round_5.gltf" id="pebble_5"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Plant_1.gltf" id="plant_1"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Plant_7.gltf" id="plant_7"]
+[ext_resource type="PackedScene" path="res://scenes/entities3d/food_3d.tscn" id="food_3d"]
+[ext_resource type="PackedScene" path="res://scenes/entities3d/fireflies_3d.tscn" id="fireflies"]
+[ext_resource type="Script" path="res://scripts/props/jungle_generator.gd" id="jungle_generator"]
+[ext_resource type="Script" path="res://scripts/ui/food_label.gd" id="food_label"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jungle"]
+sky_top_color = Color(0.05, 0.2, 0.35, 1)
+sky_horizon_color = Color(0.75, 0.55, 0.3, 1)
+sky_curve = 0.12
+sun_angle_max = 60.0
+sun_angle_min = 30.0
+sun_curve = 0.18
+
+[sub_resource type="Sky" id="Sky_jungle"]
+sky_material = SubResource("ProceduralSkyMaterial_jungle")
+
+[sub_resource type="Environment" id="Environment_jungle"]
+background_mode = 2
+sky = SubResource("Sky_jungle")
+ambient_light_source = 2
+ambient_light_color = Color(0.15, 0.25, 0.15, 1)
+ambient_light_energy = 0.35
+fog_enabled = true
+fog_light_color = Color(0.6, 0.5, 0.3, 1)
+fog_density = 0.02
+fog_aerial_perspective = 0.4
+fog_sky_affect = 0.3
+fog_height_enabled = true
+fog_height = 0.0
+fog_height_density = 0.1
+tonemap_mode = 3
+tonemap_exposure = 1.0
+tonemap_white = 1.2
+ssr_enabled = false
+ssao_enabled = true
+ssao_radius = 1.5
+ssao_intensity = 1.5
+glow_enabled = true
+glow_intensity = 0.3
+glow_strength = 0.8
+glow_bloom = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
-albedo_color = Color(0.25, 0.4, 0.18, 1)
-roughness = 0.9
+albedo_color = Color(0.05, 0.08, 0.03, 1)
+roughness = 0.95
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
-size = Vector2(128, 128)
 material = SubResource("StandardMaterial3D_ground")
+size = Vector2(256, 256)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ground"]
 
-[sub_resource type="Environment" id="Environment_main"]
-background_color = Color(0.5, 0.7, 0.9, 1)
-ambient_light_source = 1
-ambient_light_color = Color(0.5, 0.5, 0.5, 1)
-ambient_light_energy = 0.5
+[sub_resource type="CameraAttributesPractical" id="CameraAttributes_jungle"]
+exposure_multiplier = 0.9
+auto_exposure_enabled = false
 
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_main")
+environment = SubResource("Environment_jungle")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707, -0.707, 0, 0.707, 0.707, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 0.259, -0.966, 0, 0.966, 0.259, 0, 20, 0)
+light_color = Color(1, 0.8, 0.5, 1)
+light_energy = 1.2
 shadow_enabled = true
+shadow_bias = 0.05
+shadow_reverse_cull_face = false
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_ground")
@@ -41,64 +105,109 @@ mesh = SubResource("PlaneMesh_ground")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_ground")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 25, 0)
-current = true
-projection = 1
-size = 25.0
+[node name="Player3D" parent="." instance=ExtResource("player_3d")]
 
-[node name="BuildingPlacer3D" type="Node3D" parent="."]
-script = ExtResource("building_placer_3d")
-camera = NodePath("../Camera3D")
-building_scenes = Array[PackedScene]([ExtResource("house_3d")])
+[node name="CameraPivot" type="Node3D" parent="Player3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player3D/CameraPivot"]
+spring_length = 6.0
+margin = 0.5
+collision_mask = 0
+
+[node name="Camera3D" type="Camera3D" parent="Player3D/CameraPivot/SpringArm3D"]
+transform = Transform3D(-1, 0, 0, 0, 0.87, 0.5, 0, 0.5, -0.87, 0, 0, 0)
+fov = 65.0
+attributes = SubResource("CameraAttributes_jungle")
+current = true
+
+[node name="TorchLight" type="SpotLight3D" parent="Player3D"]
+transform = Transform3D(1, 0, 0, 0, 0.94, -0.34, 0, 0.34, 0.94, 0, 1.8, 0)
+light_color = Color(0.95, 0.9, 0.7, 1)
+light_energy = 0.6
+spot_range = 12.0
+spot_angle = 35.0
+spot_angle_attenuation = 1.5
+shadow_enabled = false
+
+[node name="JungleGenerator" type="Node3D" parent="."]
+script = ExtResource("jungle_generator")
+tree_scenes = Array[PackedScene]([ExtResource("tree_1"), ExtResource("tree_2"), ExtResource("tree_3"), ExtResource("tree_4"), ExtResource("tree_5"), ExtResource("dead_tree_1"), ExtResource("dead_tree_2"), ExtResource("dead_tree_3"), ExtResource("dead_tree_4"), ExtResource("dead_tree_5"), ExtResource("pine_1"), ExtResource("pine_2"), ExtResource("pine_3"), ExtResource("pine_4"), ExtResource("pine_5")])
+bush_scenes = Array[PackedScene]([ExtResource("bush"), ExtResource("bush_flowers"), ExtResource("fern"), ExtResource("plant_1"), ExtResource("plant_7")])
+rock_scenes = Array[PackedScene]([ExtResource("pebble_1"), ExtResource("pebble_2"), ExtResource("pebble_3"), ExtResource("pebble_4"), ExtResource("pebble_5")])
+grass_scenes = Array[PackedScene]([ExtResource("grass_tall"), ExtResource("grass_wispy")])
+food_scene = ExtResource("food_3d")
+area_radius = 80.0
+clear_radius_around_player = 5.0
+tree_count = 220
+bush_count = 260
+rock_count = 90
+grass_count = 450
+food_count = 20
+
+[node name="Fireflies" parent="." instance=ExtResource("fireflies")]
 
 [node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource("ui_manager")
-building_placer = NodePath("BuildingPlacer3D")
+layer = 1
 
-[node name="Tree3D" parent="." instance=ExtResource("tree_3d")]
-position = Vector3(-5, 0, -3)
+[node name="TopPanel" type="Panel" parent="UI"]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 8
+offset_top = 8
+offset_right = 208
+offset_bottom = 64
+add_theme_color_override("panel", Color(0.05, 0.05, 0.05, 0.75))
 
-[node name="Tree3D2" parent="." instance=ExtResource("tree_3d")]
-position = Vector3(-8, 0, -5)
+[node name="BottomPanel" type="Panel" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -330
+offset_top = -88
+offset_right = 330
+offset_bottom = -32
+grow_horizontal = 2
+grow_vertical = 0
+add_theme_color_override("panel", Color(0.05, 0.05, 0.05, 0.75))
 
-[node name="Tree3D3" parent="." instance=ExtResource("tree_3d")]
-position = Vector3(6, 0, -6)
+[node name="FoodLabel" type="Label" parent="UI"]
+script = ExtResource("food_label")
+anchors_preset = 2
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 16
+offset_top = 16
+offset_right = 200
+offset_bottom = 56
+text = "Food: 0"
+add_theme_font_size_override("font_size", 28)
+add_theme_color_override("font_color", Color(1, 1, 1, 1))
+add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
+add_theme_constant_override("outline_size", 4)
 
-[node name="Tree3D4" parent="." instance=ExtResource("tree_3d")]
-position = Vector3(8, 0, 5)
-
-[node name="Tree3D5" parent="." instance=ExtResource("tree_3d")]
-position = Vector3(-5, 0, 7)
-
-[node name="Tree3D6" parent="." instance=ExtResource("tree_3d")]
-position = Vector3(3, 0, 9)
-
-[node name="Tree3D7" parent="." instance=ExtResource("tree_3d")]
-position = Vector3(-10, 0, 4)
-
-[node name="Rock3D" parent="." instance=ExtResource("rock_3d")]
-position = Vector3(5, 0, 3)
-
-[node name="Rock3D2" parent="." instance=ExtResource("rock_3d")]
-position = Vector3(-3, 0, 6)
-
-[node name="Rock3D3" parent="." instance=ExtResource("rock_3d")]
-position = Vector3(7, 0, -2)
-
-[node name="Rock3D4" parent="." instance=ExtResource("rock_3d")]
-position = Vector3(-8, 0, -2)
-
-[node name="Survivor3D" parent="." instance=ExtResource("survivor_3d")]
-
-[node name="Survivor3D2" parent="." instance=ExtResource("survivor_3d")]
-position = Vector3(1, 0, 1)
-
-[node name="Survivor3D3" parent="." instance=ExtResource("survivor_3d")]
-position = Vector3(-2, 0, 1)
-
-[node name="Survivor3D4" parent="." instance=ExtResource("survivor_3d")]
-position = Vector3(1, 0, -2)
-
-[node name="Campfire3D" parent="." instance=ExtResource("campfire_3d")]
-position = Vector3(0, 0, 2)
+[node name="HintLabel" type="Label" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320
+offset_top = -80
+offset_right = 320
+offset_bottom = -40
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+text = "WASD to move  |  Click to look around  |  ESC frees mouse  |  Walk over mushrooms to collect food"
+add_theme_font_size_override("font_size", 18)
+add_theme_color_override("font_color", Color(1, 1, 1, 1))
+add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
+add_theme_constant_override("outline_size", 3)

@@ -1,41 +1,18 @@
-[gd_scene format=3 load_steps=7]
+[gd_scene format=3 load_steps=4]
 
-[ext_resource type="Script" path="res://scripts/entities/resource_node_3d.gd" id="resource_node_3d"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trunk"]
-albedo_color = Color(0.4, 0.25, 0.15, 1)
-roughness = 0.9
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_leaves"]
-albedo_color = Color(0.15, 0.5, 0.15, 1)
-roughness = 0.8
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_trunk"]
-top_radius = 0.2
-bottom_radius = 0.3
-height = 1.5
-material = SubResource("StandardMaterial3D_trunk")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_leaves"]
-top_radius = 0.0
-bottom_radius = 1.2
-height = 2.0
-material = SubResource("StandardMaterial3D_leaves")
+[ext_resource type="Script" path="res://scripts/entities/tree_3d.gd" id="tree_3d"]
+[ext_resource type="PackedScene" path="res://assets/models/environment/CommonTree_1.fbx" id="common_tree"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tree"]
 radius = 0.6
 height = 3.0
 
 [node name="Tree3D" type="StaticBody3D"]
-script = ExtResource("resource_node_3d")
+script = ExtResource("tree_3d")
+wood_amount = 50
 
-[node name="Trunk" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-mesh = SubResource("CylinderMesh_trunk")
-
-[node name="Leaves" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0, 0)
-mesh = SubResource("CylinderMesh_leaves")
+[node name="CommonTree_1" parent="." instance=ExtResource("common_tree")]
+transform = Transform3D(75, 0, 0, 0, 75, 0, 0, 0, 75, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

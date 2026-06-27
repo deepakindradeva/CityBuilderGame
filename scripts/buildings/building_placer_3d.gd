@@ -21,19 +21,9 @@ func _ready():
 	_preview.visible = false
 	add_child(_preview)
 
-	if building_scenes.size() > 0:
-		select_building(0)
+	_selected_index = -1
 
 func _input(event: InputEvent):
-	if event is InputEventKey and event.pressed and not event.echo:
-		var key = event.keycode
-		if key >= KEY_1 and key <= KEY_9:
-			var idx = key - KEY_1
-			if idx < building_scenes.size():
-				select_building(idx)
-				get_viewport().set_input_as_handled()
-			return
-
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if _selected_index >= 0 and _can_place:
 			_place_building()
@@ -50,9 +40,13 @@ func _process(_delta):
 		_preview.visible = false
 		return
 
+	var current_camera = get_viewport().get_camera_3d()
+	if current_camera == null:
+		return
+
 	var mouse_pos = get_viewport().get_mouse_position()
-	var ray_origin = camera.project_ray_origin(mouse_pos)
-	var ray_dir = camera.project_ray_normal(mouse_pos)
+	var ray_origin = current_camera.project_ray_origin(mouse_pos)
+	var ray_dir = current_camera.project_ray_normal(mouse_pos)
 
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.new()
@@ -123,7 +117,7 @@ func _update_validity(world_pos: Vector3) -> void:
 			_can_place = false
 			break
 
-	var color = Color(0.0, 1.0, 0.0, 0.5) if _can_place else Color(1.0, 0.0, 0.0, 0.5)
+	var color = Color(0.2, 0.9, 1.0, 0.65) if _can_place else Color(1.0, 0.25, 0.25, 0.65)
 	for mesh in _preview.find_children("*", "MeshInstance3D"):
 		var mat = mesh.get_active_material(0)
 		if mat != null:

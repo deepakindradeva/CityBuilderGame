@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bber4eqweqdeg"]
+
+[ext_resource type="PackedScene" uid="uid://c1cf0j4pbhngm" path="res://assets/models/animations/UAL2_Standard.glb" id="anim_mannequin"]
+[ext_resource type="Script" uid="uid://t2qmlyu80bas" path="res://scripts/entities/zombie_3d.gd" id="zombie_3d"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_zombie"]
+radius = 0.35
+height = 1.0
+
+[node name="Zombie3D" type="CharacterBody3D" unique_id=830799528]
+script = ExtResource("zombie_3d")
+
+[node name="UAL2_Standard" parent="." unique_id=788189479 instance=ExtResource("anim_mannequin")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=615224752]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=394738235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_zombie")

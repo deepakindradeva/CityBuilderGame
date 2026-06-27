@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://food3d001"]
+
+[ext_resource type="PackedScene" path="res://assets/models/environment/jungle/Mushroom_Common.gltf" id="mushroom"]
+[ext_resource type="Script" path="res://scripts/entities/food_3d.gd" id="food_3d"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_food"]
+radius = 0.5
+
+[node name="Food3D" type="Area3D"]
+script = ExtResource("food_3d")
+
+[node name="Mushroom_Common" parent="." instance=ExtResource("mushroom")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_food")
